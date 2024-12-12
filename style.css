@@ -1,26 +1,74 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     text-align: center;
-    margin: 20px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    padding:20px;
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:  center;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+    text-align: center;
   }
   
-  .game-container {
+  .RPS-game {
     max-width: 400px;
-    margin: auto;
-  }
-  
-  .choices button {
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+
+.options button {
     margin: 10px;
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .results, .scoreboard {
-    margin: 20px 0;
-  }
-  
-  #result {
     font-weight: bold;
+    color: #fff;
+    background: #2575fc;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
   }
   
+.results, .scoreboard {
+    margin: 20px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.results, .scoreboard {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+#result {
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffcc00;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+#score {
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#reset {
+  background: #ff0000;
+}
+
+#reset:hover {
+    background: #ff0000;
+    transform: scale(1.1);
+}
