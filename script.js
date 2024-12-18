@@ -36,6 +36,33 @@ function determineOutcome(userChoice, computerChoice) {
     return "lose";
 }
 
+// * Highlight Choices
+
+function highlightChoice(element, highlightClass) {
+    element.classList.add(highlightClass);
+    setTimeout(() => {
+        element.classList.remove(highlightClass);
+    }, 1000);
+}
+
+// * Display Feedback for Result
+
+function displayResultFeedback(result) {
+    if (result === "win") {
+        resultDisplay.style.color = "lime";
+    } else if (result === "lose") {
+        resultDisplay.style.color = "red";
+    } else {
+        resultDisplay.style.color = "yellow";
+    }
+}
+
+function resetAnimation(element) {
+    element.style.animation = "none"; // Temporarily disable the animation
+    element.offsetHeight; // Trigger a reflow to restart the animation
+    element.style.animation = ""; // Re-enable the animation
+}
+
 // * Update Scoreboard
 
 function updateScore(result) {
@@ -47,16 +74,30 @@ function updateScore(result) {
 }
 
 // * Handle User Choice
-
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         const userChoice = button.textContent;
         const computerChoice = getComputerChoice();
+        const computerButton = [...buttons].find(btn => btn.textContent === computerChoice);
         const result = determineOutcome(userChoice, computerChoice);
 
+        // Highlight choices
+        highlightChoice(button, "user-selected");
+        highlightChoice(computerButton, "computer-selected");
+
+        // Update the display
         userChoiceDisplay.textContent = `User's Choice: ${userChoice}`;
         computerChoiceDisplay.textContent = `Computer's Choice: ${computerChoice}`;
+        
+        // Update the result with dynamic styling
         resultDisplay.textContent = `Result: ${result.charAt(0).toUpperCase() + result.slice(1)}`;
+        resultDisplay.className = ""; // Clear previous result classes
+        resultDisplay.classList.add(result); // Add the new class: 'win', 'lose', or 'draw'
+
+        // Reset and reapply animation to the result element
+        resetAnimation(resultDisplay);
+
+        // Update the scoreboard
         updateScore(result);
     });
 });
